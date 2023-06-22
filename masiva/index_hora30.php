@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link type="text/css" rel="shortcut icon" href="../img/logo-mywebsite-urian-viera.svg"/>
-  <title>Importar datos de personal</title>
+  <title>Importar datos de horas</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
   <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../css/cargando.css">
@@ -36,13 +36,13 @@
 <div class="container">
 
 <h3 class="text-center">
-    Importar datos de personal de Excel
+    Importar datos de horas de Excel
 </h3>
 <hr>
 <br><br>
  <div class="row">
     <div class="col-md-12">
-      <form action="masiva_personal.php" method="POST" enctype="multipart/form-data"/>
+      <form action="masiva_hora30.php" method="POST" enctype="multipart/form-data">
         <div class="file-input text-center">
             <input  type="file" name="dataCliente" id="file-input" class="file-input__input"/>
             <label class="file-input__label" for="file-input">
@@ -57,26 +57,24 @@
   
   <div class="col-md-12">
   <?php
-  header("Content-Type: text/html;charset=utf8");
+  header('Content-Type: text/html; charset=UTF-8');
   include('../controladores/conexion.php');
-  $sqlClientes = ("SELECT * FROM personal ORDER BY dni ASC");
-  $queryData   = mysqli_query($conexion, $sqlClientes);
+  $sqlHora30 = ("SELECT * FROM hora30 ORDER BY minuto ASC");
+  $queryData   = mysqli_query($conexion, $sqlHora30);
   $total_client = mysqli_num_rows($queryData);
   ?>
       <h6 class="text-center">
-        Lista de personal <strong>(<?php echo $total_client; ?>)</strong>
+        Lista de Horas <strong>(<?php echo $total_client; ?>)</strong>
       </h6>
 
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
               <th>#</th>
-              <th>DNI</th>
-              <th>Codigo</th>
-              <th>Apellidos</th>
-              <th>Nombres</th>
-              <th>Alias</th>
-              <th>Cargo</th>
+              <th>Minuto</th>
+              <th>Quince</th>
+              <th>Media</th>
+        
             </tr>
           </thead>
           <tbody>
@@ -85,12 +83,9 @@
             while ($data = mysqli_fetch_array($queryData)) { ?>
             <tr>
               <th scope="row"><?php echo $i++; ?></th>
-              <td><?php echo $data['dni']; ?></td>
-              <td><?php echo $data['codigo']; ?></td>
-              <td><?php echo $data['apellidos']; ?></td>
-              <td><?php echo $data['nombres']; ?></td>
-              <td><?php echo $data['alias']; ?></td>
-              <td><?php echo $data['cargo']; ?></td>
+              <td><?php echo $data['minuto']; ?></td>
+              <td><?php echo $data['quince']; ?></td>
+              <td><?php echo $data['media']; ?></td>
             </tr>
           <?php } ?>
           </tbody>
@@ -100,7 +95,6 @@
   </div>
 
 </div>
-
 
 <script src="../js/jquery.min.js"></script>
 <script src="../js/popper.min.js"></script>

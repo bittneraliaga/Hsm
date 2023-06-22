@@ -9,7 +9,7 @@ $conexion = mysqli_connect($host_name, $user_name, $password, $database);
 if (mysqli_errno($conexion)) {
     echo "Error al conectarme";
 }else{
-    echo "Me conecte a la DB";
+    echo "Conexion realizada a la DB";
 }
 
 $acentos = $conexion -> query("SET NAMES 'utf8"); 

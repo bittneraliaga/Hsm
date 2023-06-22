@@ -22,7 +22,7 @@ foreach ($lineas as $linea) {
         $alias              = !empty($datos[4])  ? ($datos[4]) : '';
         $cargo              = !empty($datos[5])  ? ($datos[5]) : '';
        
-if( !empty($celular) ){
+if( !empty($dni) ){
     $checkemail_duplicidad = ("SELECT dni FROM personal WHERE dni='".($dni)."' ");
             $ca_dupli = mysqli_query($conexion, $checkemail_duplicidad);
             $cant_duplicidad = mysqli_num_rows($ca_dupli);
